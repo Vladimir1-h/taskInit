@@ -1,0 +1,3 @@
+#nav { margin: 0 0 13px 0; }
+#nav a { padding: 3px 7px; border: 1px solid #330066; }
+#nav a:hover, #nav a.cur { background: #000066; color: white; }
