@@ -14,7 +14,7 @@ require_once 'Worker.class.php';
 		<form id="frm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> 	
 			<fieldset>
 				<legend><h3>Выберите категорию сотрудника для ввода о нем информации</h3></legend>			
-				<input type="radio" name="number" id="num" value="worker">Работник<br/>
+				<input type="radio" name="number" id="num" value="worker" checked>Работник<br/>
 				<input type="radio" name="number" id="num" value="director">Руководитель подразделения<br/>
 				<input type="radio" name="number" id="num" value="others">Другие<br/><br/>
 				<input type="button" value="Выбрать" id="button" onClick = 'wtype()' >

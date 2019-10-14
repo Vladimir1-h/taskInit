@@ -32,8 +32,6 @@ class Worker implements IWorker{
   }
 	
 	public static function filterWorker(array $arr){
-		if(!$arr)
-			return false;
 	// фильтрация данных
 		$name = self::clearStr($arr['name']);
 		$birth = self::clearStr($arr['birth']);
@@ -56,19 +54,20 @@ class Worker implements IWorker{
 	При наличии незаполненных полей или отсутствия массива - выводится сообщение об этом
 	Если все хорошо - информация записывается в файл
 	*/
-	if(empty($name) or empty($birth) or empty($recruit) or !isset($variable)){
-		self::$errMsg = "Заполните все текстовые поля! ";
-	}else{
-		$birth = self::clearDate($birth);
-		$recruit = self::clearDate($recruit);
-		$result = self::saveInfo($name, $birth, $recruit, $variable);
+		if(empty($name) or empty($birth) or empty($recruit) or !isset($variable)){
+			self::$errMsg = "Заполните все текстовые поля! ";
+		}else{
+			$birth = self::clearDate($birth);
+			$recruit = self::clearDate($recruit);
+		// запись в файл
+			$result = self::saveInfo($name, $birth, $recruit, $variable);
 		
 		// Если возникла ошибка записи в файл, выводится  сообщение
-		if(!$result){
-			self::$errMsg = "Что-то пошло не так...";
+			if(!$result){
+				self::$errMsg = "Что-то пошло не так...";
+			}
 		}
-	}
-	echo self::$errMsg;
+		echo self::$errMsg;
 	}
   
 	/* метод удаляет HTML и РНР теги, а также символы пробела, перевода строки,

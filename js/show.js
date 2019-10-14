@@ -10,12 +10,12 @@
 		
 		// выборка HTML-кода в виде строки в зависимости от выбранной категории работника
 		switch(variable){
-		case 'worker':
-			input = '<label for="worker">Подразделение</label></br><input type="text" id="worker" name="worker"></br></br>';break;
-		case 'director':
-			input = '<label for="director">Подразделение руководителем которого он является</label></br><input type="text" id="director" name="director"></br></br>';break;
-		case 'others':
-			input = '<label for="others">Текстовое описание сотрудника</label></br><input type="text" id="others" name="others"></br></br>';
+			case 'worker':
+				input = '<label for="worker">Подразделение</label></br><input type="text" id="worker" name="worker"></br></br>';break;
+			case 'director':
+				input = '<label for="director">Подразделение руководителем которого он является</label></br><input type="text" id="director" name="director"></br></br>';break;
+			case 'others':
+				input = '<label for="others">Текстовое описание сотрудника</label></br><input type="text" id="others" name="others"></br></br>';
 		}
 		
 		// заполнение HTML-элемента со значением атрибута id = 'information' необходимым HTML-кодом
@@ -23,5 +23,5 @@
 		'<label for="name">Ф.И.О.</label></br><input type="text" id="name" name="name"></br>'+
 		'<label for="birth">Дата рождения</label></br><input type="date" id="bday" name="birth"></br>'+
 		'<label for="recruit">Дата принятия на работу</label></br><input type="date" id="recruit" name="recruit"></br>'+
-		input+'<input type="submit" value="Добавить"></fieldset></form>';
+		input+'<input type="submit" value="Добавить"></fieldset>';
 	}
