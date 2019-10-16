@@ -21,12 +21,11 @@ require_once 'Worker.class.php';
 			</fieldset>
 			<div id="information"></div>
 		</form>
-		
+		<script type="text/javascript" src = "js/show.js"></script>
 <?php
-// Если был запрос методом POST, вызывается метод обработки введенных данных,
-// в который передается массив с данными
+// Если был запрос методом POST, вызывается метод обработки введенных данных
 	if($_SERVER["REQUEST_METHOD"] === "POST"){
-			Worker::filterWorker($_POST);
+			Worker::filterWorker();
 	}
 ?>
 	</div>
@@ -45,6 +44,5 @@ if (file_exists(Worker::FILE_NAME) && filesize(Worker::FILE_NAME) !== 0):
 <?php
 endif;
 ?>
-<script type="text/javascript" src = "js/show.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-// функция добавляет текстовые поля в форму для ввода данных о работнике и кнопку для добавления
+// функция добавляет текстовые поля для ввода данных о работнике и кнопку для добавления нового работника
 // Информация о последнем текстовом поле формы формируется в зависимости от выбранной категории работника
 	function wtype() {
 	
@@ -18,7 +18,7 @@
 				input = '<label for="others">Текстовое описание сотрудника</label></br><input type="text" id="others" name="others"></br></br>';
 		}
 		
-		// заполнение HTML-элемента со значением атрибута id = 'information' необходимым HTML-кодом
+		// заполнение HTML-элемента div c id = 'information'
 		document.getElementById('information').innerHTML = '<fieldset>'+'<legend>'+'<h3>Введите информацию о новом сотруднике</h3>'+'</legend>'+
 		'<label for="name">Ф.И.О.</label></br><input type="text" id="name" name="name"></br>'+
 		'<label for="birth">Дата рождения</label></br><input type="date" id="bday" name="birth"></br>'+

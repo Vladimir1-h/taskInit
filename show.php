@@ -23,10 +23,11 @@ require_once "Worker.class.php";
 		</div>
 		
 		<h1>Добавленные сотрудники:</h1>
+		<div id = "all-workers">
 <?php
 	// Получение массива с данными о работниках из файла
 	$workers = Worker::getWorker();
-	// если массив пуст - выводится сообщение и скрипт заканчивает работу
+	// если файла  или в случае ошибки чтения - выводится сообщение и скрипт заканчивает работу
 	if(!$workers){
 		echo "Добавленных работников нет";
 		exit;
@@ -41,48 +42,53 @@ require_once "Worker.class.php";
 		$worker = json_decode($worker, true);
 		
 		// Одинаковая информация для разных категорий работников
-		$data = "<li>ФИО: {$worker['name']}</li><li>Дата рождения: {$worker ['birthday']}</li><li>Дата принятия на работу: {$worker ['recruit']}</li>";
+		$data = "<li>ФИО: {$worker[0]}</li><li>Дата рождения: {$worker [1]}</li><li>Дата принятия на работу: {$worker [2]}</li>";
 		
-		// вывод инфорации в зависимости от категории работника
-		if($worker['worker']):
-		?>
-		<div id = "all-workers">
-			<div class = "work all worker">
-				<hr>
-				<ul>
-					<b>Работник</b>
-					<?=$data?>
-					<li>Подразделение: <?=$worker ['worker']?></li>
-				</ul>
-			</div>			
-		<?php
-		endif;
+		// вывод инфорации в зависимости от категории работника:
 		
-		if($worker['director']):
-		?>
-			<div class = "work all director">
-				<hr>
-				<ul>
-					<b>Руководитель</b>
-					<?=$data?>
-					<li>Подразделение руководителем которого он является: <?=$worker ['director']?></li>
-				</ul>
-			</div>
-		<?php
-		endif;
-		
-		if($worker['others']):
-		?>
-			<div class = "work all others">
-				<hr>
-				<ul>
-					<b>Другие</b>
-					<?=$data?>
-					<li>Текстовое описание сотрудника: <?=$worker ['others']?></li>
-				</ul>
-			</div>
-		</div>
-		<?php	
+		if($worker[3]):
+			foreach($worker[3] as $key => $value):
+				// информация о работниках:
+				if($key === 'worker'):
+				?>
+					<div class = "work all worker">
+						<hr>
+						<ul>
+							<b>Работник</b>
+							<?=$data?>
+							<li>Подразделение: <?=$value?></li>
+						</ul>
+					</div>			
+				<?php
+				endif;
+				// информация о руководителях
+				if($key === 'director'):
+				?>
+					<div class = "work all director">
+						<hr>
+						<ul>
+							<b>Руководитель</b>
+							<?=$data?>
+							<li>Подразделение руководителем которого он является: <?=$value?></li>
+						</ul>
+					</div>
+				<?php
+				endif;
+				// информация о категории "другие"
+				if($key === 'others'):
+				?>
+					<div class = "work all others">
+						<hr>
+						<ul>
+							<b>Другие</b>
+							<?=$data?>
+							<li>Текстовое описание сотрудника: <?=$value?></li>
+						</ul>
+					</div>
+				</div>
+				<?php	
+				endif;
+			endforeach;
 		endif;
 	endforeach;
 	?>

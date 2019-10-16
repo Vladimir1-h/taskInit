@@ -2,7 +2,6 @@
 /**
 *	interface IWorker
 *		содержит основные методы для работы со страницей добавления данных о сотрудниках
-*		и страницей показа сотрудников
  */
 interface IWorker{
   /**
@@ -20,7 +19,7 @@ interface IWorker{
   /**
    *	Выборка всех записей о сотрудниках из файла
    *	
-   *	@return array - результат выборки в виде массива
+   *	@return array/false - результат чтения в виде массива/ошибка
    */
   public static function getWorker();
 	
@@ -29,11 +28,10 @@ interface IWorker{
 	 *	то вызывается метод saveInfo(). Если пустые поля есть
 	 *  то выводится сообщение о необходимости заполнить все текстовые поля
    *
-	 *	@param  array $array - масив с данными о сотруднике
 	 *
    *	@return void
    */
-	public static function filterWorker(array $arr);
+	public static function filterWorker();
 }
   
   
