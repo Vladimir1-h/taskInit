@@ -32,9 +32,7 @@ class Worker implements IWorker{
 // метод фильтрует данные, введенные в последнее текстовое поле
 		public static function checkLastField($data){
 			$data = self::clearStr($data);
-			/* проверяется наличие пустого поля после фильтрации,
-			если поле пустое, то массив не создается и выводится сообщение  
-			*/
+			/* проверяется наличие пустого поля после фильтрации*/
 			if(!empty($data)){
 				return $data;
 			}else{
