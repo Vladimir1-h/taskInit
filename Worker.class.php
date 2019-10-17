@@ -29,26 +29,39 @@ class Worker implements IWorker{
 		return $lines;
   }
 	
+// метод фильтрует данные, введенные в последнее текстовое поле
+		public static function checkLastField($data){
+			$data = self::clearStr($data);
+			/* проверяется наличие пустого поля после фильтрации,
+			если поле пустое, то массив не создается и выводится сообщение  
+			*/
+			if(!empty($data)){
+				return $data;
+			}else{
+				return false;
+			}
+		}
+		// фильтрация данных
 	public static function filterWorker(){
-	// фильтрация данных
 		$name = self::clearStr($_POST['name']);
 		$birth = self::clearStr($_POST['birth']);
 		$recruit = self::clearStr($_POST['recruit']);
-		
-	/* запись данных из последнего текстового поля(которое меняется)
-	в массив с одним элементом с ключом, имя которого совпадает с именем категории работника
-	 если данные в поле не были введены, то массив не создается*/
-		if(isset($_POST['worker']) && !empty($_POST['worker'])){
-			$variable['worker'] = self::clearStr($_POST['worker']);
+		if(isset($_POST['worker'])){
+			if(self::checkLastField(($_POST['worker']))){
+				$variable['worker'] = self::checkLastField(($_POST['worker']));
+			}
 		}
-		if(isset($_POST['director']) && !empty($_POST['director'])){
-			$variable['director'] = self::clearStr($_POST['director']);
+		if(isset($_POST['director'])){
+			if(self::checkLastField(($_POST['director']))){
+				$variable['director'] = self::checkLastField(($_POST['director']));
+			}
 		}
-		if(isset($_POST['others']) && !empty($_POST['others'])){
-			$variable['others'] = self::clearStr($_POST['others']);
-		}
-	
-	/* проверяется наличие незаполненных полей и наличие массива
+		if(isset($_POST['others'])){
+			if(self::checkLastField(($_POST['others']))){
+				$variable['others'] = self::checkLastField(($_POST['others']));
+			}
+		}		
+	/* проверяется наличие незаполненных полей
 	При наличии незаполненных полей или отсутствия массива - выводится сообщение об этом
 	Если все хорошо - информация записывается в файл
 	*/
